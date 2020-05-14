@@ -1,0 +1,34 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Todo Management Application",
+  "main": "y",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrivastavasukriti/todo-node-backend.git"
+  },
+  "keywords": [
+    "node",
+    "app"
+  ],
+  "author": "Sukriti Shrivastava",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/shrivastavasukriti/todo-node-backend/issues"
+  },
+  "homepage": "https://github.com/shrivastavasukriti/todo-node-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
