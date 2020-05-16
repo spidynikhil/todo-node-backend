@@ -5,21 +5,29 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
+
+// Fetching main model TODO
 let Todo = require('./todo.model');
+
+// Starting server
 const PORT = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
+
+// Connecting to Database
 mongoose.connect('mongodb://127.0.0.1:27017/test', { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
 });
 
+// Adding routes
 app.use('/todos', todoRoutes);
 
+// Main route - homepage
 todoRoutes.route('/').get(function(req, res) {
     Todo.find(function(err, todos) {
         if (err) {
@@ -29,6 +37,8 @@ todoRoutes.route('/').get(function(req, res) {
         }
     });
 });
+
+// Get request
 todoRoutes.route('/:id').get(function(req, res) {
     let id = req.params.id;
     Todo.findById(id, function(err, todo) {
@@ -36,6 +46,7 @@ todoRoutes.route('/:id').get(function(req, res) {
     });
 });
 
+//Post request
 todoRoutes.route('/add').post(function(req, res) {
     let todo = new Todo(req.body);
     todo.save()
@@ -47,6 +58,7 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 
+//Post request
 todoRoutes.route('/update/:id').post(function(req, res) {
     Todo.findById(req.params.id, function(err, todo) {
         if (!todo)
